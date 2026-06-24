@@ -14,19 +14,21 @@
     min-height: 100vh;
     font-size: 15px;
     -webkit-font-smoothing: antialiased;
+    /* Minimalist top accent line using Amsterdam Red from Screenshot 2026-06-24 at 21.57.21.png */
+    border-top: 5px solid #A62B2B; 
   }
 
-  /* HERO */
+  /* CLEAN, LIGHT HERO */
   .hero {
     text-align: center;
-    padding: 60px 32px 32px;
+    padding: 50px 32px 32px;
   }
   .hero h1 {
-    font-size: 56px;
+    font-size: 52px;
     font-weight: 700;
     letter-spacing: -1.5px;
     color: #111;
-    margin-bottom: 14px;
+    margin-bottom: 12px;
     line-height: 1.1;
   }
   .hero p {
@@ -65,8 +67,9 @@
   }
   .kpi-card.active { 
     background: white; 
-    border-color: #b8b5ae; 
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    border-color: #A62B2B; /* Brand color boundary */
+    border-width: 1px;
+    box-shadow: 0 4px 12px rgba(166, 43, 43, 0.08);
   }
 
   .kpi-icon-wrap {
@@ -94,7 +97,7 @@
   }
   .kpi-trend.down   { color: #2d7a52; }
   .kpi-trend.neutral{ color: #888; }
-  .kpi-trend.up     { color: #c0392b; }
+  .kpi-trend.up     { color: #A62B2B; } 
   .kpi-trend.approx { color: #888; }
 
   .kpi-label {
@@ -159,8 +162,8 @@
     transition: all 0.2s ease;
   }
   .search-input:focus {
-    border-color: #888;
-    box-shadow: 0 0 0 3px rgba(0,0,0,0.04);
+    border-color: #A62B2B; 
+    box-shadow: 0 0 0 3px rgba(166, 43, 43, 0.06);
   }
   .search-icon {
     position: absolute;
@@ -277,7 +280,7 @@
     flex-shrink: 0;
     margin-top: 7px;
   }
-  .bullet.red    { background: #c0392b; }
+  .bullet.red    { background: #A62B2B; } 
   .bullet.gray   { background: #aaa; }
   .bullet.blue   { background: #2471a3; }
   .bullet.purple { background: #7d3c98; }
@@ -431,7 +434,7 @@
     background: #fafaf9;
     padding: 14px;
     border-radius: 8px;
-    border-left: 3px solid #999;
+    border-left: 3px solid #A62B2B; 
   }
   .sq-chevron {
     color: #aaa;
@@ -453,15 +456,17 @@
 </head>
 <body>
 
+<!-- HERO -->
 <div class="hero">
   <h1>Conclusions</h1>
   <p>Impact of Amsterdam's 30 km/h speed limit on air quality, traffic noise, and resident perceptions</p>
 </div>
 
+<!-- KPI CARDS -->
 <div class="kpi-grid">
   <div class="kpi-card" data-metric="pm25">
     <div class="kpi-icon-wrap red">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c0392b" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#A62B2B" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
     </div>
     <div class="kpi-trend up">↑</div>
     <div class="kpi-label">PM2.5</div>
@@ -477,7 +482,7 @@
   </div>
   <div class="kpi-card" data-metric="no2">
     <div class="kpi-icon-wrap gray">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2"><polyline points="23 18 13.5 8.5 8.5 13.5 1 6"/><polyline points="17 18 23 18 23 12"/></svg>
     </div>
     <div class="kpi-trend down">↓</div>
     <div class="kpi-label">NO₂</div>
@@ -509,6 +514,7 @@
   </div>
 </div>
 
+<!-- DYNAMIC CHART PREVIEW PANEL -->
 <div class="visualization-panel">
   <div class="panel-title" id="panel-headline">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
@@ -523,8 +529,10 @@
   </svg>
 </div>
 
+<!-- MAIN BODY SETUP -->
 <div class="body-wrap">
   
+  <!-- LEFT COLUMN (WITH SEARCH) -->
   <div class="left-col">
     <div class="search-container">
       <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
@@ -539,6 +547,7 @@
       <button class="collapse-all" id="toggleAllBtn" onclick="toggleAll()">Collapse all</button>
     </div>
 
+    <!-- Air Quality -->
     <div class="finding-card" data-search="air quality pm2.5 pm10 nitrogen dioxide noord-west oud-oost">
       <div class="finding-header" onclick="toggle(this)">
         <div class="finding-header-left">
@@ -558,6 +567,7 @@
       </div>
     </div>
 
+    <!-- Traffic Noise -->
     <div class="finding-card" data-search="traffic noise noord-west oud-oost variations speed limit">
       <div class="finding-header" onclick="toggle(this)">
         <div class="finding-header-left">
@@ -576,6 +586,7 @@
       </div>
     </div>
 
+    <!-- Livability -->
     <div class="finding-card" data-search="livability centre amsterdam city outside parts">
       <div class="finding-header" onclick="toggle(this)">
         <div class="finding-header-left">
@@ -593,6 +604,7 @@
       </div>
     </div>
 
+    <!-- Public Opinion -->
     <div class="finding-card" data-search="public opinion mixed citizens implementation traffic jams aggressive driving">
       <div class="finding-header" onclick="toggle(this)">
         <div class="finding-header-left">
@@ -612,6 +624,7 @@
       </div>
     </div>
 
+    <!-- Traffic Data GGD -->
     <div class="finding-card" data-search="traffic data ggd heavy light traffic pm10 pm2.5 no2 consistency">
       <div class="finding-header" onclick="toggle(this)">
         <div class="finding-header-left">
@@ -632,7 +645,9 @@
     </div>
   </div>
 
+  <!-- RIGHT COLUMN -->
   <div class="right-col">
+    <!-- Main RQ -->
     <div class="rq-card">
       <div class="rq-label">
         <div class="rq-label-icon">⊙</div>
@@ -649,12 +664,14 @@
       </div>
     </div>
 
+    <!-- Sub Questions -->
     <div class="sq-card">
       <div class="sq-label">
         <div class="sq-label-icon">⊙</div>
         Sub-questions
       </div>
 
+      <!-- SQ1 -->
       <div class="sq-item" data-sqid="1" onclick="toggleSQ(this)">
         <span class="sq-num">SQ1</span>
         <div class="sq-text-wrap">
@@ -667,6 +684,7 @@
         <span class="sq-chevron">▾</span>
       </div>
 
+      <!-- SQ2 -->
       <div class="sq-item" data-sqid="2" onclick="toggleSQ(this)">
         <span class="sq-num">SQ2</span>
         <div class="sq-text-wrap">
@@ -679,6 +697,7 @@
         <span class="sq-chevron">▾</span>
       </div>
 
+      <!-- SQ3 -->
       <div class="sq-item" data-sqid="3" onclick="toggleSQ(this)">
         <span class="sq-num">SQ3</span>
         <div class="sq-text-wrap">
@@ -691,6 +710,7 @@
         <span class="sq-chevron">▾</span>
       </div>
 
+      <!-- SQ4 -->
       <div class="sq-item" data-sqid="4" onclick="toggleSQ(this)">
         <span class="sq-num">SQ4</span>
         <div class="sq-text-wrap">
@@ -708,9 +728,7 @@
 </div>
 
 <script>
-  // Initialize state setup from localStorage or default configurations
   document.addEventListener("DOMContentLoaded", () => {
-    // Retain subquestion expansion logic state
     document.querySelectorAll('.sq-item').forEach(item => {
       const id = item.getAttribute('data-sqid');
       if(localStorage.getItem(`sq-${id}`) === 'open') {
@@ -718,7 +736,6 @@
       }
     });
 
-    // Retain conclusion accordion layout memory state
     const cardStates = JSON.parse(localStorage.getItem('cardStates')) || {};
     document.querySelectorAll('.finding-card').forEach((card, idx) => {
       const body = card.querySelector('.finding-body');
@@ -728,9 +745,8 @@
     });
     updateCollapseButtonText();
 
-    // Map metrics details inside data panel state logic
     const pathConfig = {
-      pm25: { path: "M 50 40 Q 250 80, 500 30 T 950 15", color: "#c0392b", title: "Data Trendline: PM2.5 Concentrations (Increase Trend)" },
+      pm25: { path: "M 50 40 Q 250 80, 500 30 T 950 15", color: "#A62B2B", title: "Data Trendline: PM2.5 Concentrations (Increase Trend)" },
       pm10: { path: "M 50 60 L 500 60 L 950 60", color: "#888888", title: "Data Trendline: PM10 Concentrations (Stable Horizon)" },
       no2: { path: "M 50 20 Q 250 50, 500 80 T 950 95", color: "#2d7a52", title: "Data Trendline: Nitrogen Dioxide (NO₂) Citywide Decrease" },
       noise: { path: "M 50 80 Q 250 20, 500 90 T 950 40", color: "#d4810a", title: "Data Trendline: Traffic Noise Variations" },
@@ -755,7 +771,6 @@
         path.setAttribute('d', config.path);
         path.setAttribute('stroke', config.color);
         
-        // Dynamically shift visual graph plot points accurately
         const pathLength = path.getTotalLength();
         const pt1 = path.getPointAtLength(0);
         const pt2 = path.getPointAtLength(pathLength);
