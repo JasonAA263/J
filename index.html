@@ -19,7 +19,7 @@
   /* HERO */
   .hero {
     text-align: center;
-    padding: 80px 32px 48px;
+    padding: 60px 32px 32px;
   }
   .hero h1 {
     font-size: 56px;
@@ -33,18 +33,8 @@
     font-size: 16px;
     color: #555;
     max-width: 580px;
-    margin: 0 auto 28px;
+    margin: 0 auto;
     line-height: 1.6;
-  }
-  .arrow-down {
-    font-size: 20px;
-    color: #888;
-    display: block;
-    animation: bounce 1.8s ease-in-out infinite;
-  }
-  @keyframes bounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(7px); }
   }
 
   /* KPI GRID */
@@ -52,7 +42,7 @@
     display: flex;
     justify-content: center;
     gap: 12px;
-    padding: 0 32px 56px;
+    padding: 0 32px 32px;
     flex-wrap: wrap;
     max-width: 1140px;
     margin: 0 auto;
@@ -66,6 +56,7 @@
     text-align: center;
     transition: all 0.2s ease;
     box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+    cursor: pointer;
   }
   .kpi-card:hover { 
     background: #eae7e0; 
@@ -73,9 +64,9 @@
     box-shadow: 0 4px 8px rgba(0,0,0,0.04);
   }
   .kpi-card.active { 
-    background: #e6e3dc; 
+    background: white; 
     border-color: #b8b5ae; 
-    box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
   }
 
   .kpi-icon-wrap {
@@ -118,6 +109,28 @@
     line-height: 1.4;
   }
 
+  /* VISUALIZATION PANEL */
+  .visualization-panel {
+    max-width: 1076px;
+    margin: 0 auto 40px;
+    background: white;
+    border-radius: 16px;
+    border: 0.5px solid #d8d5ce;
+    padding: 24px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.01);
+  }
+  .panel-title {
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #555;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
   /* MAIN BODY */
   .body-wrap {
     max-width: 1140px;
@@ -129,9 +142,36 @@
     align-items: start;
   }
 
-  /* LEFT COL */
-  .left-col {}
+  /* SEARCH BAR */
+  .search-container {
+    margin-bottom: 16px;
+    position: relative;
+  }
+  .search-input {
+    width: 100%;
+    padding: 12px 16px 12px 40px;
+    border-radius: 10px;
+    border: 0.5px solid #c8c5be;
+    background: white;
+    font-family: inherit;
+    font-size: 14px;
+    outline: none;
+    transition: all 0.2s ease;
+  }
+  .search-input:focus {
+    border-color: #888;
+    box-shadow: 0 0 0 3px rgba(0,0,0,0.04);
+  }
+  .search-icon {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0.4;
+    pointer-events: none;
+  }
 
+  /* LEFT COL */
   .section-header {
     display: flex;
     align-items: center;
@@ -167,6 +207,7 @@
     margin-bottom: 12px;
     overflow: hidden;
     box-shadow: 0 4px 12px rgba(0,0,0,0.01);
+    transition: opacity 0.2s ease, transform 0.2s ease;
   }
   .finding-header {
     display: flex;
@@ -288,16 +329,11 @@
   }
   
   /* SCROLLABLE OVERVIEW BLOCK */
-  .rq-scroll-wrapper {
-    position: relative;
-  }
+  .rq-scroll-wrapper { position: relative; }
   .rq-scroll-wrapper::after {
     content: '';
     position: absolute;
-    bottom: 1px;
-    left: 1px;
-    right: 1px;
-    height: 20px;
+    bottom: 1px; left: 1px; right: 1px; height: 20px;
     background: linear-gradient(transparent, rgba(255,255,255,0.9));
     pointer-events: none;
     border-radius: 0 0 10px 10px;
@@ -314,23 +350,10 @@
     gap: 14px;
     box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
   }
-  .rq-scroll-container::-webkit-scrollbar {
-    width: 6px;
-  }
-  .rq-scroll-container::-webkit-scrollbar-thumb {
-    background-color: #b8b5ae;
-    border-radius: 10px;
-  }
-  .rq-desc {
-    font-size: 13.5px;
-    color: #444;
-    line-height: 1.65;
-  }
-  .rq-desc-divider {
-    height: 0.5px;
-    background: #e6e3dc;
-    margin: 2px 0;
-  }
+  .rq-scroll-container::-webkit-scrollbar { width: 6px; }
+  .rq-scroll-container::-webkit-scrollbar-thumb { background-color: #b8b5ae; border-radius: 10px; }
+  .rq-desc { font-size: 13.5px; color: #444; line-height: 1.65; }
+  .rq-desc-divider { height: 0.5px; background: #e6e3dc; margin: 2px 0; }
 
   /* SUB QUESTIONS CARD */
   .sq-card {
@@ -387,38 +410,24 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    transition: opacity 0.15s;
   }
-  .sq-item.open .sq-preview {
-    display: none;
-  }
-  .sq-full {
-    font-size: 13.5px;
-    color: #111;
-    line-height: 1.6;
-    font-weight: 600;
-    display: none;
-  }
-  .sq-item.open .sq-full {
-    display: block;
-  }
+  .sq-item.open .sq-preview { display: none; }
+  .sq-full { font-size: 13.5px; color: #111; line-height: 1.6; font-weight: 600; display: none; }
+  .sq-item.open .sq-full { display: block; }
   
-  /* Collapsible container layout adjustments */
   .sq-anim-container {
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.3s ease-in-out;
   }
-  .sq-item.open .sq-anim-container {
-    max-height: 600px; /* Increased threshold to completely clear text constraints */
-  }
+  .sq-item.open .sq-anim-container { max-height: 600px; }
   
   .sq-desc-block {
     font-size: 13px;
     color: #555;
     line-height: 1.6;
     margin-top: 12px;
-    margin-bottom: 4px; /* Leaves extra breathing room inside the container */
+    margin-bottom: 4px;
     background: #fafaf9;
     padding: 14px;
     border-radius: 8px;
@@ -437,64 +446,62 @@
     .body-wrap { grid-template-columns: 1fr; gap: 24px; }
     .right-col { position: static; }
     .hero h1 { font-size: 44px; }
-    .kpi-grid { padding-bottom: 32px; }
+    .kpi-grid { padding-bottom: 24px; }
+    .visualization-panel { margin: 0 32px 32px; }
   }
 </style>
 </head>
 <body>
 
-<!-- HERO -->
 <div class="hero">
   <h1>Conclusions</h1>
   <p>Impact of Amsterdam's 30 km/h speed limit on air quality, traffic noise, and resident perceptions</p>
-  <span class="arrow-down">↓</span>
 </div>
 
-<!-- KPI CARDS -->
 <div class="kpi-grid">
-  <div class="kpi-card">
+  <div class="kpi-card" data-metric="pm25">
     <div class="kpi-icon-wrap red">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c0392b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c0392b" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
     </div>
     <div class="kpi-trend up">↑</div>
     <div class="kpi-label">PM2.5</div>
     <div class="kpi-sub">Higher in 2024 vs 2023</div>
   </div>
-  <div class="kpi-card">
+  <div class="kpi-card" data-metric="pm10">
     <div class="kpi-icon-wrap gray">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/></svg>
     </div>
     <div class="kpi-trend neutral">—</div>
     <div class="kpi-label">PM10</div>
     <div class="kpi-sub">No significant change</div>
   </div>
-  <div class="kpi-card">
+  <div class="kpi-card" data-metric="no2">
     <div class="kpi-icon-wrap gray">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/></svg>
     </div>
     <div class="kpi-trend down">↓</div>
     <div class="kpi-label">NO₂</div>
     <div class="kpi-sub">Citywide decrease</div>
   </div>
-  <div class="kpi-card active">
+  <div class="kpi-card active" data-metric="noise">
     <div class="kpi-icon-wrap orange">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#d4810a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#d4810a" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
     </div>
     <div class="kpi-trend approx">~</div>
     <div class="kpi-label">Traffic Noise</div>
     <div class="kpi-sub">Mixed variations by zone</div>
   </div>
-  <div class="kpi-card">
+  <div class="kpi-card" data-metric="heavy">
     <div class="kpi-icon-wrap green">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2d7a52" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2d7a52" stroke-width="2"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
     </div>
     <div class="kpi-trend down">↓</div>
     <div class="kpi-label">Heavy Traffic PM</div>
     <div class="kpi-sub">Lower values in 2024</div>
   </div>
-  <div class="kpi-card">
+  <div class="kpi-card" data-metric="perceptions">
     <div class="kpi-icon-wrap purple">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7d3c98" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/></svg>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7d3c98" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/></svg>
     </div>
     <div class="kpi-trend approx">~</div>
     <div class="kpi-label">Perceptions</div>
@@ -502,25 +509,41 @@
   </div>
 </div>
 
-<!-- BODY -->
+<div class="visualization-panel">
+  <div class="panel-title" id="panel-headline">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+    Data Trendline: Traffic Noise Variations
+  </div>
+  <svg viewBox="0 0 1000 120" width="100%" height="70" style="overflow: visible;">
+    <path id="chart-path" d="M 50 80 Q 250 20, 500 90 T 950 40" fill="none" stroke="#d4810a" stroke-width="3" stroke-linecap="round"/>
+    <circle id="chart-dot-1" cx="50" cy="80" r="5" fill="#d4810a" />
+    <circle id="chart-dot-2" cx="950" cy="40" r="5" fill="#d4810a" />
+    <text x="50" y="110" font-size="12" fill="#777" font-weight="bold">2023 (Baseline)</text>
+    <text x="900" y="110" font-size="12" fill="#777" font-weight="bold">2024 (Post-Policy)</text>
+  </svg>
+</div>
+
 <div class="body-wrap">
   
-  <!-- LEFT COLUMN -->
   <div class="left-col">
-    <div class="section-header">
-      <div class="section-header-left">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/><line x1="9" y1="3" x2="9" y2="18"/><line x1="15" y1="6" x2="15" y2="21"/></svg>
-        Final Conclusions
-      </div>
-      <button class="collapse-all" onclick="toggleAll()">Collapse all</button>
+    <div class="search-container">
+      <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input type="text" class="search-input" id="searchBar" placeholder="Search conclusions..." oninput="filterCards()">
     </div>
 
-    <!-- Air Quality -->
-    <div class="finding-card">
+    <div class="section-header">
+      <div class="section-header-left">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="2"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/><line x1="9" y1="3" x2="9" y2="18"/><line x1="15" y1="6" x2="15" y2="21"/></svg>
+        Final Conclusions
+      </div>
+      <button class="collapse-all" id="toggleAllBtn" onclick="toggleAll()">Collapse all</button>
+    </div>
+
+    <div class="finding-card" data-search="air quality pm2.5 pm10 nitrogen dioxide noord-west oud-oost">
       <div class="finding-header" onclick="toggle(this)">
         <div class="finding-header-left">
           <div class="finding-icon air">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2d7a52" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2d7a52" stroke-width="2"><path d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2"/></svg>
           </div>
           Air Quality — PM2.5 &amp; PM10
         </div>
@@ -535,12 +558,11 @@
       </div>
     </div>
 
-    <!-- Traffic Noise -->
-    <div class="finding-card">
+    <div class="finding-card" data-search="traffic noise noord-west oud-oost variations speed limit">
       <div class="finding-header" onclick="toggle(this)">
         <div class="finding-header-left">
           <div class="finding-icon noise">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c0392b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c0392b" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
           </div>
           Traffic Noise
         </div>
@@ -554,12 +576,11 @@
       </div>
     </div>
 
-    <!-- Livability -->
-    <div class="finding-card">
+    <div class="finding-card" data-search="livability centre amsterdam city outside parts">
       <div class="finding-header" onclick="toggle(this)">
         <div class="finding-header-left">
           <div class="finding-icon live">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2471a3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2471a3" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
           </div>
           Livability
         </div>
@@ -572,12 +593,11 @@
       </div>
     </div>
 
-    <!-- Public Opinion -->
-    <div class="finding-card">
+    <div class="finding-card" data-search="public opinion mixed citizens implementation traffic jams aggressive driving">
       <div class="finding-header" onclick="toggle(this)">
         <div class="finding-header-left">
           <div class="finding-icon opinion">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7d3c98" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7d3c98" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
           </div>
           Public Opinion
         </div>
@@ -592,12 +612,11 @@
       </div>
     </div>
 
-    <!-- Traffic Data GGD -->
-    <div class="finding-card">
+    <div class="finding-card" data-search="traffic data ggd heavy light traffic pm10 pm2.5 no2 consistency">
       <div class="finding-header" onclick="toggle(this)">
         <div class="finding-header-left">
           <div class="finding-icon traffic">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2471a3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="2"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2471a3" stroke-width="2"><rect x="1" y="3" width="15" height="13" rx="2"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
           </div>
           Traffic Data (GGD)
         </div>
@@ -613,9 +632,7 @@
     </div>
   </div>
 
-  <!-- RIGHT COLUMN -->
   <div class="right-col">
-    <!-- Main RQ -->
     <div class="rq-card">
       <div class="rq-label">
         <div class="rq-label-icon">⊙</div>
@@ -623,7 +640,6 @@
       </div>
       <div class="rq-text">To what extent does the reduction of the speed limit from 50 to 30 km/h correlate with changes in PM2.5 and PM10 concentrations, and how do these findings align with the perceptions and experiences of residents both before and after the policy change, and between an area where 30 km/h has been implemented (Oud-Oost) and an area where 50 km/h remains the norm (Noord-West)?</div>
       
-      <!-- SCROLLABLE DESCRIPTION WINDOW -->
       <div class="rq-scroll-wrapper">
         <div class="rq-scroll-container">
           <div class="rq-desc">The results of the project suggest that changing the speed limit from 50 km/h to 30 km/h only has limited connection with the changes in air quality values. In 2024 the PM2.5 values were generally higher in comparison to 2023 whilst the PM10 values only show a little change in the research areas. This goes together with the fact that in less traffic PM2.5 and PM10 values increased suggesting that driving at lower speeds increases the average values for air quality. For heavy traffic it is the opposite with lower values in 2024 compared to 2023. For nitrogen dioxide the concentration levels decrease in 2024 which was for the whole of Amsterdam. Looking at both research areas there was not any changes indicating that there are broader environmental influences instead of a direct change in certain areas due to a change in speed limits.</div>
@@ -633,15 +649,13 @@
       </div>
     </div>
 
-    <!-- Sub Questions -->
     <div class="sq-card">
       <div class="sq-label">
         <div class="sq-label-icon">⊙</div>
         Sub-questions
       </div>
 
-      <!-- SQ1 -->
-      <div class="sq-item" onclick="toggleSQ(this)">
+      <div class="sq-item" data-sqid="1" onclick="toggleSQ(this)">
         <span class="sq-num">SQ1</span>
         <div class="sq-text-wrap">
           <div class="sq-preview">What differences in PM2.5 and PM10 concentrations are observable between Oud-Oost...</div>
@@ -653,8 +667,7 @@
         <span class="sq-chevron">▾</span>
       </div>
 
-      <!-- SQ2 -->
-      <div class="sq-item" onclick="toggleSQ(this)">
+      <div class="sq-item" data-sqid="2" onclick="toggleSQ(this)">
         <span class="sq-num">SQ2</span>
         <div class="sq-text-wrap">
           <div class="sq-preview">How do residents of Oud-Oost and Noord-West Amsterdam perceive changes in air quality and...</div>
@@ -666,8 +679,7 @@
         <span class="sq-chevron">▾</span>
       </div>
 
-      <!-- SQ3 -->
-      <div class="sq-item" onclick="toggleSQ(this)">
+      <div class="sq-item" data-sqid="3" onclick="toggleSQ(this)">
         <span class="sq-num">SQ3</span>
         <div class="sq-text-wrap">
           <div class="sq-preview">To what extent do the sensor measurements from Samenmeten align with the perceptions and...</div>
@@ -679,8 +691,7 @@
         <span class="sq-chevron">▾</span>
       </div>
 
-      <!-- SQ4 -->
-      <div class="sq-item" onclick="toggleSQ(this)">
+      <div class="sq-item" data-sqid="4" onclick="toggleSQ(this)">
         <span class="sq-num">SQ4</span>
         <div class="sq-text-wrap">
           <div class="sq-preview">How can the results of this comparison be clearly and accessibly visualised for RIVM and their...</div>
@@ -697,22 +708,119 @@
 </div>
 
 <script>
+  // Initialize state setup from localStorage or default configurations
+  document.addEventListener("DOMContentLoaded", () => {
+    // Retain subquestion expansion logic state
+    document.querySelectorAll('.sq-item').forEach(item => {
+      const id = item.getAttribute('data-sqid');
+      if(localStorage.getItem(`sq-${id}`) === 'open') {
+        item.classList.add('open');
+      }
+    });
+
+    // Retain conclusion accordion layout memory state
+    const cardStates = JSON.parse(localStorage.getItem('cardStates')) || {};
+    document.querySelectorAll('.finding-card').forEach((card, idx) => {
+      const body = card.querySelector('.finding-body');
+      if (cardStates[idx] === 'hidden') {
+        body.style.display = 'none';
+      }
+    });
+    updateCollapseButtonText();
+
+    // Map metrics details inside data panel state logic
+    const pathConfig = {
+      pm25: { path: "M 50 40 Q 250 80, 500 30 T 950 15", color: "#c0392b", title: "Data Trendline: PM2.5 Concentrations (Increase Trend)" },
+      pm10: { path: "M 50 60 L 500 60 L 950 60", color: "#888888", title: "Data Trendline: PM10 Concentrations (Stable Horizon)" },
+      no2: { path: "M 50 20 Q 250 50, 500 80 T 950 95", color: "#2d7a52", title: "Data Trendline: Nitrogen Dioxide (NO₂) Citywide Decrease" },
+      noise: { path: "M 50 80 Q 250 20, 500 90 T 950 40", color: "#d4810a", title: "Data Trendline: Traffic Noise Variations" },
+      heavy: { path: "M 50 30 Q 300 40, 600 70 T 950 100", color: "#2d7a52", title: "Data Trendline: Heavy Traffic Particulate Reductions" },
+      perceptions: { path: "M 50 50 Q 250 30, 500 65 T 950 75", color: "#7d3c98", title: "Data Trendline: Public Sentiment Matrix Shift" }
+    };
+
+    document.querySelectorAll('.kpi-card').forEach(card => {
+      card.addEventListener('click', () => {
+        document.querySelectorAll('.kpi-card').forEach(c => c.classList.remove('active'));
+        card.classList.add('active');
+        
+        const metric = card.getAttribute('data-metric');
+        const config = pathConfig[metric];
+        
+        document.getElementById('panel-headline').innerHTML = `
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          ${config.title}
+        `;
+        
+        const path = document.getElementById('chart-path');
+        path.setAttribute('d', config.path);
+        path.setAttribute('stroke', config.color);
+        
+        // Dynamically shift visual graph plot points accurately
+        const pathLength = path.getTotalLength();
+        const pt1 = path.getPointAtLength(0);
+        const pt2 = path.getPointAtLength(pathLength);
+        
+        document.getElementById('chart-dot-1').setAttribute('cx', pt1.x);
+        document.getElementById('chart-dot-1').setAttribute('cy', pt1.y);
+        document.getElementById('chart-dot-1').setAttribute('fill', config.color);
+        
+        document.getElementById('chart-dot-2').setAttribute('cx', pt2.x);
+        document.getElementById('chart-dot-2').setAttribute('cy', pt2.y);
+        document.getElementById('chart-dot-2').setAttribute('fill', config.color);
+      });
+    });
+  });
+
   function toggle(header) {
     const body = header.nextElementSibling;
     const isOpen = body.style.display !== 'none';
     body.style.display = isOpen ? 'none' : 'block';
+    saveCardStates();
+    updateCollapseButtonText();
   }
 
   function toggleAll() {
     const bodies = document.querySelectorAll('.finding-body');
-    const btn = document.querySelector('.collapse-all');
     const anyOpen = Array.from(bodies).some(b => b.style.display !== 'none');
     bodies.forEach(b => b.style.display = anyOpen ? 'none' : 'block');
-    btn.textContent = anyOpen ? 'Expand all' : 'Collapse all';
+    saveCardStates();
+    updateCollapseButtonText();
+  }
+
+  function updateCollapseButtonText() {
+    const bodies = document.querySelectorAll('.finding-body');
+    const btn = document.getElementById('toggleAllBtn');
+    const anyOpen = Array.from(bodies).some(b => b.style.display !== 'none');
+    btn.textContent = anyOpen ? 'Collapse all' : 'Expand all';
+  }
+
+  function saveCardStates() {
+    const cardStates = {};
+    document.querySelectorAll('.finding-card').forEach((card, idx) => {
+      const body = card.querySelector('.finding-body');
+      cardStates[idx] = body.style.display === 'none' ? 'hidden' : 'visible';
+    });
+    localStorage.setItem('cardStates', JSON.stringify(cardStates));
   }
 
   function toggleSQ(item) {
     item.classList.toggle('open');
+    const id = item.getAttribute('data-sqid');
+    localStorage.setItem(`sq-${id}`, item.classList.contains('open') ? 'open' : 'closed');
+  }
+
+  function filterCards() {
+    const query = document.getElementById('searchBar').value.toLowerCase();
+    document.querySelectorAll('.finding-card').forEach(card => {
+      const matchTerms = card.getAttribute('data-search').toLowerCase();
+      if(matchTerms.includes(query)) {
+        card.style.display = "block";
+        card.style.opacity = "1";
+      } else {
+        card.style.display = "none";
+        card.style.opacity = "0";
+      }
+    });
   }
 </script>
 </body>
