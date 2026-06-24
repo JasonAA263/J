@@ -83,6 +83,7 @@
   .kpi-icon-wrap.red   { background: #fde8e6; }
   .kpi-icon-wrap.blue  { background: #dce8f7; }
   .kpi-icon-wrap.purple{ background: #ece6f7; }
+  .kpi-icon-wrap.orange{ background: #fef5e7; }
 
   .kpi-trend {
     font-size: 22px;
@@ -267,6 +268,37 @@
     font-size: 14px;
     color: #333;
     line-height: 1.7;
+    margin-bottom: 12px;
+  }
+  
+  /* SCROLLABLE OVERVIEW/DESCRIPTION BLOCK */
+  .rq-scroll-container {
+    max-height: 220px;
+    overflow-y: auto;
+    background: white;
+    padding: 14px;
+    border-radius: 10px;
+    border: 0.5px solid #d0cdc7;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .rq-scroll-container::-webkit-scrollbar {
+    width: 5px;
+  }
+  .rq-scroll-container::-webkit-scrollbar-thumb {
+    background-color: #c5c2bb;
+    border-radius: 10px;
+  }
+  .rq-desc {
+    font-size: 13.5px;
+    color: #444;
+    line-height: 1.6;
+  }
+  .rq-desc-divider {
+    height: 0.5px;
+    background: #e0ddd7;
+    margin: 2px 0;
   }
 
   .sq-card {
@@ -284,17 +316,6 @@
     text-transform: uppercase;
     color: #555;
     margin-bottom: 14px;
-  }
-  .sq-label-icon {
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
-    border: 1.5px solid #999;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 14px;
-    color: #666;
   }
   .sq-item {
     background: white;
@@ -335,6 +356,18 @@
     display: none;
     border-top: 0.5px solid #e0ddd7;
     padding-top: 8px;
+    font-weight: 600;
+  }
+  .sq-desc-block {
+    font-size: 13px;
+    color: #555;
+    line-height: 1.55;
+    margin-top: 8px;
+    background: #fafaf9;
+    padding: 12px;
+    border-radius: 6px;
+    border-left: 3px solid #bcbbb5;
+    display: none;
   }
   .sq-chevron {
     color: #aaa;
@@ -344,7 +377,7 @@
     transition: transform 0.2s;
   }
   .sq-item.open .sq-chevron { transform: rotate(180deg); }
-  .sq-item.open .sq-full { display: block; }
+  .sq-item.open .sq-full, .sq-item.open .sq-desc-block { display: block; }
 
   @media (max-width: 860px) {
     .body-wrap { grid-template-columns: 1fr; }
@@ -366,12 +399,12 @@
 <!-- KPI CARDS -->
 <div class="kpi-grid">
   <div class="kpi-card">
-    <div class="kpi-icon-wrap green">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2d7a52" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+    <div class="kpi-icon-wrap red">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c0392b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
     </div>
-    <div class="kpi-trend down">↓</div>
+    <div class="kpi-trend up">↑</div>
     <div class="kpi-label">PM2.5</div>
-    <div class="kpi-sub">Lower in 2024 vs 2023</div>
+    <div class="kpi-sub">Higher in 2024 vs 2023</div>
   </div>
   <div class="kpi-card">
     <div class="kpi-icon-wrap gray">
@@ -385,38 +418,40 @@
     <div class="kpi-icon-wrap gray">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/></svg>
     </div>
-    <div class="kpi-trend neutral">—</div>
+    <div class="kpi-trend down">↓</div>
     <div class="kpi-label">NO₂</div>
-    <div class="kpi-sub">No change observed</div>
+    <div class="kpi-sub">Citywide decrease</div>
   </div>
   <div class="kpi-card active">
-    <div class="kpi-icon-wrap red">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c0392b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+    <div class="kpi-icon-wrap orange">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#d4810a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
     </div>
-    <div class="kpi-trend up">↑</div>
+    <div class="kpi-trend approx">~</div>
     <div class="kpi-label">Traffic Noise</div>
-    <div class="kpi-sub">Higher at 30 km/h zones</div>
+    <div class="kpi-sub">Mixed variations by zone</div>
   </div>
   <div class="kpi-card">
     <div class="kpi-icon-wrap green">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2d7a52" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
     </div>
     <div class="kpi-trend down">↓</div>
-    <div class="kpi-label">Traffic Volume</div>
-    <div class="kpi-sub">Less traffic in 2024</div>
+    <div class="kpi-label">Heavy Traffic PM</div>
+    <div class="kpi-sub">Lower values in 2024</div>
   </div>
   <div class="kpi-card">
     <div class="kpi-icon-wrap purple">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7d3c98" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7d3c98" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/></svg>
     </div>
     <div class="kpi-trend approx">~</div>
-    <div class="kpi-label">Livability</div>
-    <div class="kpi-sub">Mixed opinions</div>
+    <div class="kpi-label">Perceptions</div>
+    <div class="kpi-sub">Less enthusiastic overall</div>
   </div>
 </div>
 
 <!-- BODY -->
 <div class="body-wrap">
+  
+  <!-- LEFT COLUMN -->
   <div class="left-col">
     <div class="section-header">
       <div class="section-header-left">
@@ -439,9 +474,9 @@
       </div>
       <div class="finding-body">
         <ul>
-          <li><span class="bullet"></span>Higher PM2.5 values in 2023 in comparison to 2024</li>
-          <li><span class="bullet"></span>Little to no change in PM10 values between 2023 and 2024</li>
-          <li><span class="bullet"></span>No change in nitrogen dioxide values after determining the speed limit from 50 km/h to 30 km/h for both Noord-West and Oud-Oost</li>
+          <li><span class="bullet red"></span>In both research areas based on the Atlas Leefomgeving data the PM2.5 values are higher in 2024 in comparison to 2023</li>
+          <li><span class="bullet gray"></span>Little to no change in PM10 values between 2023 and 2024 in both research areas based on the Atlas Leefomgeving data</li>
+          <li><span class="bullet gray"></span>No change in nitrogen dioxide values after determining the speed limit from 50 km/h to 30 km/h for both Noord-West and Oud-Oost</li>
         </ul>
       </div>
     </div>
@@ -460,7 +495,7 @@
       <div class="finding-body">
         <ul>
           <li><span class="bullet red"></span>Higher values of traffic noise in Noord-West Amsterdam with a speed limit of 30 km/h in comparison to 50 km/h</li>
-          <li><span class="bullet green" style="background:#2d7a52"></span>Slightly lower values of traffic noise in Oud-Oost Amsterdam with a speed limit of 30 km/h in comparison to 50 km/h</li>
+          <li><span class="bullet green"></span>Slightly lower values of traffic noise in Oud-Oost Amsterdam with a speed limit of 30 km/h in comparison to 50 km/h</li>
         </ul>
       </div>
     </div>
@@ -497,7 +532,7 @@
       <div class="finding-body">
         <ul>
           <li><span class="bullet gray"></span>In general mixed opinions of citizens about the implementation of the 30 km/h zones at the end of 2023</li>
-          <li><span class="bullet" style="background:#2d7a52"></span>Positive opinions are mainly about people driving more calm and safe</li>
+          <li><span class="bullet green"></span>Positive opinions are mainly about people driving more calm and safe</li>
           <li><span class="bullet red"></span>Negative opinions mainly address that more traffic jams will form due to lower speeds making people drive more aggressively</li>
         </ul>
       </div>
@@ -512,67 +547,87 @@
           </div>
           Traffic Data (GGD)
         </div>
-        <span class="finding-count">1</span>
+        <span class="finding-count">3</span>
       </div>
       <div class="finding-body">
         <ul>
-          <li><span class="bullet blue"></span>GGD measurements show less traffic in 2024 in comparison to 2023</li>
+          <li><span class="bullet green"></span>Based on the data from the GGD for places in Amsterdam with heavy traffic the average for PM10 and PM2.5 values are lower in 2024 in comparison to 2023</li>
+          <li><span class="bullet red"></span>For places in Amsterdam with light traffic the GGD data shows that the average for PM10 and PM2.5 values are higher for 2024 in comparison to 2023</li>
+          <li><span class="bullet gray"></span>For the average NO2 concentration the GGD data shows relative consistency across monitored variations</li>
         </ul>
       </div>
     </div>
   </div>
 
-  <!-- RIGHT COL -->
+  <!-- RIGHT COLUMN -->
   <div class="right-col">
+    <!-- Main RQ -->
     <div class="rq-card">
       <div class="rq-label">
         <div class="rq-label-icon">⊙</div>
         Main research question
       </div>
       <div class="rq-text">To what extent does the reduction of the speed limit from 50 to 30 km/h correlate with changes in PM2.5 and PM10 concentrations, and how do these findings align with the perceptions and experiences of residents both before and after the policy change, and between an area where 30 km/h has been implemented (Oud-Oost) and an area where 50 km/h remains the norm (Noord-West)?</div>
+      
+      <!-- SCROLLABLE DESCRIPTION WINDOW -->
+      <div class="rq-scroll-container">
+        <div class="rq-desc">he results of the project suggest that changing the speed limit from 50 km/h to 30 km/h only has limited connection with the changes in air quality values. In 2024 the PM2.5 values were generally higher in comparison to 2023 whilst the PM10 values only show a little change in the research areas. This goes together with the fact that in less traffic PM2.5 and PM10 values increased suggesting that driving at lower speeds increases the average values for air quality. For heavy traffic it is the opposite with lower values in 2024 compared to 2023. For nitrogen dioxide the concentration levels decrease in 2024 which was for the whole of Amsterdam. Looking at both research areas there was not any changes indicating that there are broader environmental influences instead of a direct change in certain areas due to a change in speed limits.</div>
+        <div class="rq-desc-divider"></div>
+        <div class="rq-desc">The perception of residents revealed a mix of opinions on the new 30 km/h policy. Whilst the more positive comments were about the better safety and traffic and calmer driving behaviour the negative opinions were almost the opposite. Citizens with negative perceptions are mainly concerned about more traffic congestions resulting in more traffic jams and more aggressive driving. Even though the measurements from sensors show limited changes in air quality values, the perceptions of the residents are also clear with slightly more citizens not being too enthusiastic about the policy change.</div>
+      </div>
     </div>
 
+    <!-- Sub Questions -->
     <div class="sq-card">
       <div class="sq-label">
         <div class="sq-label-icon">⊙</div>
         Sub-questions
       </div>
 
+      <!-- SQ1 -->
       <div class="sq-item" onclick="toggleSQ(this)">
         <span class="sq-num">SQ1</span>
         <div class="sq-text-wrap">
-          <div class="sq-preview">What differences in PM2.5 and PM10 concentrations are observable between Oud-Oost...</div>
-          <div class="sq-full">What differences in PM2.5 and PM10 concentrations are observable between Oud-Oost and Noord-West Amsterdam, and how have these changed over time relative to the introduction of the 30 km/h zones?</div>
+          <div class="sq-preview">What differences in PM2.5 an PM10 concentrations are observable between Oud-Oost...</div>
+          <div class="sq-full">What differences in PM2.5 an PM10 concentrations are observable between Oud-Oost and Noord-West Amsterdam, and how have these changed over time relative to the introduction of the 30 km/h zones?</div>
+          <div class="sq-desc-block">Based on the GGD data the comparison between 2023 and 2024 showed that the PM2.5 concentrations were generally higher in 2023 in places with high traffic meaning an improvement of air quality the year after the changes in speed limit. In places with low traffic however the PM2.5 values got worse of which the same can be said for the PM10 values. Besides that the data from Atlas Leefomgeving shows that PM2.5 values also got slightly worse in both research areas with PM10 values showing little to no change. For PM10 the values were basically almost the same between Noord-West and Oud-Oost Amsterdam. Only for the PM2.5 the values in Oud-Oost are higher in comparison to Noord-West which is likely the result of a denser urban environment.</div>
         </div>
         <span class="sq-chevron">▾</span>
       </div>
 
+      <!-- SQ2 -->
       <div class="sq-item" onclick="toggleSQ(this)">
         <span class="sq-num">SQ2</span>
         <div class="sq-text-wrap">
           <div class="sq-preview">How do residents of Oud-Oost and Noord-West Amsterdam perceive changes in air quality and...</div>
           <div class="sq-full">How do residents of Oud-Oost and Noord-West Amsterdam perceive changes in air quality and traffic safety since the introduction of the 30 km/h policy, and do these perceptions differ between the two areas?</div>
+          <div class="sq-desc-block">The citizens of Amsterdam had some mixed opinions regarding the introduction of the 30 km/h policy in terms of traffic safety and air quality. Most of the positives respondents highlighted better traffic safety because of people driving more slowly and having a calmer driving behaviour, adding to a more pleasant experience on the street with people feeling safer. However the negative responses were concerned about the increased traffic due to slow driving vehicles as a result of the 30 km/h zones. More traffic congestion, traffic jams and more frustration among drivers were the main reasons of why those respondents felt negative about the new policy. In general people were also in doubt if the new policy actually improves air quality with only 47% saying the speed reduction results in a better air quality.</div>
         </div>
         <span class="sq-chevron">▾</span>
       </div>
 
+      <!-- SQ3 -->
       <div class="sq-item" onclick="toggleSQ(this)">
         <span class="sq-num">SQ3</span>
         <div class="sq-text-wrap">
           <div class="sq-preview">To what extent do the sensor measurements from Samenmeten align with the perceptions and...</div>
           <div class="sq-full">To what extent do the sensor measurements from Samenmeten align with the perceptions and experiences reported by residents through the Maptionnaire survey?</div>
+          <div class="sq-desc-block">The alignment between the Samenmeten measurements and perceptions of citizens was not exactly the same. Sensor measurements showed only some changes in air quality with PM10 values and NO2 which almost were unchanged. On the other hand the perceptions of citizens seemed to be more about the traffic safety and driver behaviour rather than improvements in air quality. This suggests that improvements in air quality or the opposite were difficult to perceive with the societal effects of the policy being more important to citizens. Perceptions of a bitter living environment would be more driven changes in traffic rather than objective measurements in air quality. Aside from that it was almost a 50/50 situation on the question if speed reduction increases air quality so the sensor measurements and perceptions of citizens could be aligned.</div>
         </div>
         <span class="sq-chevron">▾</span>
       </div>
 
+      <!-- SQ4 -->
       <div class="sq-item" onclick="toggleSQ(this)">
         <span class="sq-num">SQ4</span>
         <div class="sq-text-wrap">
           <div class="sq-preview">How can the results of this comparison be clearly and accessibly visualised for RIVM and their...</div>
           <div class="sq-full">How can the results of this comparison be clearly and accessibly visualised for RIVM and their connections?</div>
+          <div class="sq-desc-block">The result of the project is communicated through making a visual good Experience Builder which includes maps with comparisons between 2023 and 2024 but also pages that include comparisons between the two research areas based on the different speed limits and the what the effects are. Besides that are also line graphs included showing important data to give more context to the situation. A dashboard is also included showing the sensor measurements within Amsterdam.</div>
         </div>
         <span class="sq-chevron">▾</span>
       </div>
+
     </div>
   </div>
 </div>
