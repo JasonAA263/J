@@ -13,12 +13,13 @@
     color: #1a1a1a;
     min-height: 100vh;
     font-size: 15px;
+    -webkit-font-smoothing: antialiased;
   }
 
   /* HERO */
   .hero {
     text-align: center;
-    padding: 72px 32px 40px;
+    padding: 80px 32px 48px;
   }
   .hero h1 {
     font-size: 56px;
@@ -50,10 +51,10 @@
   .kpi-grid {
     display: flex;
     justify-content: center;
-    gap: 10px;
-    padding: 0 32px 48px;
+    gap: 12px;
+    padding: 0 32px 56px;
     flex-wrap: wrap;
-    max-width: 1100px;
+    max-width: 1140px;
     margin: 0 auto;
   }
   .kpi-card {
@@ -61,12 +62,21 @@
     border: 0.5px solid #d8d5ce;
     border-radius: 16px;
     padding: 22px 16px 18px;
-    width: 155px;
+    width: 160px;
     text-align: center;
-    transition: background 0.15s;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
   }
-  .kpi-card:hover { background: #eae7e0; }
-  .kpi-card.active { background: #e6e3dc; border-color: #c0bdb6; }
+  .kpi-card:hover { 
+    background: #eae7e0; 
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.04);
+  }
+  .kpi-card.active { 
+    background: #e6e3dc; 
+    border-color: #b8b5ae; 
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+  }
 
   .kpi-icon-wrap {
     width: 40px;
@@ -110,12 +120,12 @@
 
   /* MAIN BODY */
   .body-wrap {
-    max-width: 1100px;
+    max-width: 1140px;
     margin: 0 auto;
     padding: 0 32px 80px;
     display: grid;
-    grid-template-columns: 1fr 420px;
-    gap: 24px;
+    grid-template-columns: 1fr 440px;
+    gap: 32px;
     align-items: start;
   }
 
@@ -136,39 +146,43 @@
     font-weight: 600;
     color: #111;
   }
-  .section-header-left svg { opacity: 0.5; }
+  .section-header-left svg { opacity: 0.6; }
   .collapse-all {
     font-size: 13px;
-    color: #777;
+    color: #666;
     cursor: pointer;
     background: none;
     border: none;
-    padding: 0;
+    padding: 4px 8px;
     font-family: inherit;
+    border-radius: 6px;
+    transition: background 0.2s;
   }
-  .collapse-all:hover { color: #333; }
+  .collapse-all:hover { color: #111; background: #e0ddd7; }
 
   .finding-card {
     background: white;
     border-radius: 16px;
     border: 0.5px solid #d8d5ce;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
     overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.01);
   }
   .finding-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 16px 18px;
+    padding: 18px 20px;
     cursor: pointer;
     user-select: none;
+    transition: background 0.2s;
   }
   .finding-header:hover { background: #fafaf8; }
   .finding-header-left {
     display: flex;
     align-items: center;
     gap: 12px;
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 600;
     color: #111;
   }
@@ -190,37 +204,37 @@
 
   .finding-count {
     background: #f0ede8;
-    color: #888;
+    color: #777;
     font-size: 12px;
-    font-weight: 500;
+    font-weight: 600;
     border-radius: 7px;
     padding: 3px 9px;
   }
   .finding-body {
     border-top: 0.5px solid #eae7e1;
-    padding: 16px 18px 18px 18px;
+    padding: 18px 20px 20px;
   }
   .finding-body ul {
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 14px;
   }
   .finding-body li {
     display: flex;
     align-items: flex-start;
-    gap: 10px;
-    font-size: 14px;
+    gap: 12px;
+    font-size: 14.5px;
     color: #333;
-    line-height: 1.55;
+    line-height: 1.6;
   }
   .bullet {
-    width: 7px;
-    height: 7px;
+    width: 8px;
+    height: 8px;
     border-radius: 50%;
     background: #2d7a52;
     flex-shrink: 0;
-    margin-top: 5px;
+    margin-top: 7px;
   }
   .bullet.red    { background: #c0392b; }
   .bullet.gray   { background: #aaa; }
@@ -232,7 +246,7 @@
   .right-col {
     display: flex;
     flex-direction: column;
-    gap: 14px;
+    gap: 16px;
     position: sticky;
     top: 24px;
   }
@@ -240,7 +254,8 @@
   .rq-card {
     background: #E0DDD7;
     border-radius: 16px;
-    padding: 20px 22px;
+    padding: 22px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.02);
   }
   .rq-label {
     display: flex;
@@ -251,7 +266,7 @@
     letter-spacing: 0.08em;
     text-transform: uppercase;
     color: #555;
-    margin-bottom: 12px;
+    margin-bottom: 14px;
   }
   .rq-label-icon {
     width: 28px;
@@ -265,46 +280,64 @@
     color: #666;
   }
   .rq-text {
-    font-size: 14px;
-    color: #333;
+    font-size: 14.5px;
+    color: #222;
+    font-weight: 500;
     line-height: 1.7;
-    margin-bottom: 12px;
+    margin-bottom: 16px;
   }
   
-  /* SCROLLABLE OVERVIEW/DESCRIPTION BLOCK */
+  /* SCROLLABLE OVERVIEW BLOCK */
+  .rq-scroll-wrapper {
+    position: relative;
+  }
+  .rq-scroll-wrapper::after {
+    content: '';
+    position: absolute;
+    bottom: 1px;
+    left: 1px;
+    right: 1px;
+    height: 20px;
+    background: linear-gradient(transparent, rgba(255,255,255,0.9));
+    pointer-events: none;
+    border-radius: 0 0 10px 10px;
+  }
   .rq-scroll-container {
-    max-height: 220px;
+    max-height: 240px;
     overflow-y: auto;
     background: white;
-    padding: 14px;
+    padding: 16px;
     border-radius: 10px;
-    border: 0.5px solid #d0cdc7;
+    border: 0.5px solid #c8c5be;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 14px;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
   }
   .rq-scroll-container::-webkit-scrollbar {
-    width: 5px;
+    width: 6px;
   }
   .rq-scroll-container::-webkit-scrollbar-thumb {
-    background-color: #c5c2bb;
+    background-color: #b8b5ae;
     border-radius: 10px;
   }
   .rq-desc {
     font-size: 13.5px;
     color: #444;
-    line-height: 1.6;
+    line-height: 1.65;
   }
   .rq-desc-divider {
     height: 0.5px;
-    background: #e0ddd7;
+    background: #e6e3dc;
     margin: 2px 0;
   }
 
+  /* SUB QUESTIONS CARD */
   .sq-card {
     background: #E0DDD7;
     border-radius: 16px;
-    padding: 20px 22px;
+    padding: 22px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.02);
   }
   .sq-label {
     display: flex;
@@ -315,75 +348,96 @@
     letter-spacing: 0.08em;
     text-transform: uppercase;
     color: #555;
-    margin-bottom: 14px;
+    margin-bottom: 16px;
   }
   .sq-item {
     background: white;
     border-radius: 10px;
-    border: 0.5px solid #d0cdc7;
-    padding: 12px 14px;
-    margin-bottom: 8px;
+    border: 0.5px solid #c8c5be;
+    padding: 14px;
+    margin-bottom: 10px;
     display: flex;
     align-items: flex-start;
-    gap: 10px;
+    gap: 12px;
     cursor: pointer;
-    transition: background 0.15s;
+    transition: all 0.2s ease;
   }
   .sq-item:last-child { margin-bottom: 0; }
-  .sq-item:hover { background: #f7f5f2; }
+  .sq-item:hover { 
+    background: #fdfdfc; 
+    border-color: #b8b5ae;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+  }
   .sq-num {
     background: #e8e5df;
-    color: #777;
+    color: #666;
     font-size: 11px;
-    font-weight: 600;
+    font-weight: 700;
     border-radius: 6px;
-    padding: 2px 7px;
+    padding: 2px 8px;
     flex-shrink: 0;
     margin-top: 1px;
     letter-spacing: 0.02em;
   }
-  .sq-text-wrap { flex: 1; }
+  .sq-text-wrap { flex: 1; overflow: hidden; }
   .sq-preview {
-    font-size: 13px;
+    font-size: 13.5px;
     color: #444;
     line-height: 1.5;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: opacity 0.15s;
+  }
+  .sq-item.open .sq-preview {
+    display: none;
   }
   .sq-full {
-    font-size: 13px;
-    color: #333;
+    font-size: 13.5px;
+    color: #111;
     line-height: 1.6;
-    margin-top: 8px;
-    display: none;
-    border-top: 0.5px solid #e0ddd7;
-    padding-top: 8px;
     font-weight: 600;
+    display: none;
   }
+  .sq-item.open .sq-full {
+    display: block;
+  }
+  
+  /* Collapsible container layout adjustments */
+  .sq-anim-container {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out;
+  }
+  .sq-item.open .sq-anim-container {
+    max-height: 600px; /* Increased threshold to completely clear text constraints */
+  }
+  
   .sq-desc-block {
     font-size: 13px;
     color: #555;
-    line-height: 1.55;
-    margin-top: 8px;
+    line-height: 1.6;
+    margin-top: 12px;
+    margin-bottom: 4px; /* Leaves extra breathing room inside the container */
     background: #fafaf9;
-    padding: 12px;
-    border-radius: 6px;
-    border-left: 3px solid #bcbbb5;
-    display: none;
+    padding: 14px;
+    border-radius: 8px;
+    border-left: 3px solid #999;
   }
   .sq-chevron {
     color: #aaa;
     font-size: 14px;
     flex-shrink: 0;
     margin-top: 2px;
-    transition: transform 0.2s;
+    transition: transform 0.2s ease;
   }
-  .sq-item.open .sq-chevron { transform: rotate(180deg); }
-  .sq-item.open .sq-full, .sq-item.open .sq-desc-block { display: block; }
+  .sq-item.open .sq-chevron { transform: rotate(180deg); color: #666; }
 
-  @media (max-width: 860px) {
-    .body-wrap { grid-template-columns: 1fr; }
+  @media (max-width: 960px) {
+    .body-wrap { grid-template-columns: 1fr; gap: 24px; }
     .right-col { position: static; }
-    .hero h1 { font-size: 40px; }
-    .kpi-card { width: 140px; }
+    .hero h1 { font-size: 44px; }
+    .kpi-grid { padding-bottom: 32px; }
   }
 </style>
 </head>
@@ -570,10 +624,12 @@
       <div class="rq-text">To what extent does the reduction of the speed limit from 50 to 30 km/h correlate with changes in PM2.5 and PM10 concentrations, and how do these findings align with the perceptions and experiences of residents both before and after the policy change, and between an area where 30 km/h has been implemented (Oud-Oost) and an area where 50 km/h remains the norm (Noord-West)?</div>
       
       <!-- SCROLLABLE DESCRIPTION WINDOW -->
-      <div class="rq-scroll-container">
-        <div class="rq-desc">he results of the project suggest that changing the speed limit from 50 km/h to 30 km/h only has limited connection with the changes in air quality values. In 2024 the PM2.5 values were generally higher in comparison to 2023 whilst the PM10 values only show a little change in the research areas. This goes together with the fact that in less traffic PM2.5 and PM10 values increased suggesting that driving at lower speeds increases the average values for air quality. For heavy traffic it is the opposite with lower values in 2024 compared to 2023. For nitrogen dioxide the concentration levels decrease in 2024 which was for the whole of Amsterdam. Looking at both research areas there was not any changes indicating that there are broader environmental influences instead of a direct change in certain areas due to a change in speed limits.</div>
-        <div class="rq-desc-divider"></div>
-        <div class="rq-desc">The perception of residents revealed a mix of opinions on the new 30 km/h policy. Whilst the more positive comments were about the better safety and traffic and calmer driving behaviour the negative opinions were almost the opposite. Citizens with negative perceptions are mainly concerned about more traffic congestions resulting in more traffic jams and more aggressive driving. Even though the measurements from sensors show limited changes in air quality values, the perceptions of the residents are also clear with slightly more citizens not being too enthusiastic about the policy change.</div>
+      <div class="rq-scroll-wrapper">
+        <div class="rq-scroll-container">
+          <div class="rq-desc">The results of the project suggest that changing the speed limit from 50 km/h to 30 km/h only has limited connection with the changes in air quality values. In 2024 the PM2.5 values were generally higher in comparison to 2023 whilst the PM10 values only show a little change in the research areas. This goes together with the fact that in less traffic PM2.5 and PM10 values increased suggesting that driving at lower speeds increases the average values for air quality. For heavy traffic it is the opposite with lower values in 2024 compared to 2023. For nitrogen dioxide the concentration levels decrease in 2024 which was for the whole of Amsterdam. Looking at both research areas there was not any changes indicating that there are broader environmental influences instead of a direct change in certain areas due to a change in speed limits.</div>
+          <div class="rq-desc-divider"></div>
+          <div class="rq-desc">The perception of residents revealed a mix of opinions on the new 30 km/h policy. Whilst the more positive comments were about the better safety and traffic and calmer driving behaviour the negative opinions were almost the opposite. Citizens with negative perceptions are mainly concerned about more traffic congestions resulting in more traffic jams and more aggressive driving. Even though the measurements from sensors show limited changes in air quality values, the perceptions of the residents are also clear with slightly more citizens not being too enthusiastic about the policy change.</div>
+        </div>
       </div>
     </div>
 
@@ -588,9 +644,11 @@
       <div class="sq-item" onclick="toggleSQ(this)">
         <span class="sq-num">SQ1</span>
         <div class="sq-text-wrap">
-          <div class="sq-preview">What differences in PM2.5 an PM10 concentrations are observable between Oud-Oost...</div>
-          <div class="sq-full">What differences in PM2.5 an PM10 concentrations are observable between Oud-Oost and Noord-West Amsterdam, and how have these changed over time relative to the introduction of the 30 km/h zones?</div>
-          <div class="sq-desc-block">Based on the GGD data the comparison between 2023 and 2024 showed that the PM2.5 concentrations were generally higher in 2023 in places with high traffic meaning an improvement of air quality the year after the changes in speed limit. In places with low traffic however the PM2.5 values got worse of which the same can be said for the PM10 values. Besides that the data from Atlas Leefomgeving shows that PM2.5 values also got slightly worse in both research areas with PM10 values showing little to no change. For PM10 the values were basically almost the same between Noord-West and Oud-Oost Amsterdam. Only for the PM2.5 the values in Oud-Oost are higher in comparison to Noord-West which is likely the result of a denser urban environment.</div>
+          <div class="sq-preview">What differences in PM2.5 and PM10 concentrations are observable between Oud-Oost...</div>
+          <div class="sq-full">What differences in PM2.5 and PM10 concentrations are observable between Oud-Oost and Noord-West Amsterdam, and how have these changed over time relative to the introduction of the 30 km/h zones?</div>
+          <div class="sq-anim-container">
+            <div class="sq-desc-block">Based on the GGD data the comparison between 2023 and 2024 showed that the PM2.5 concentrations were generally higher in 2023 in places with high traffic meaning an improvement of air quality the year after the changes in speed limit. In places with low traffic however the PM2.5 values got worse of which the same can be said for the PM10 values. Besides that the data from Atlas Leefomgeving shows that PM2.5 values also got slightly worse in both research areas with PM10 values showing little to no change. For PM10 the values were basically almost the same between Noord-West and Oud-Oost Amsterdam. Only for the PM2.5 the values in Oud-Oost are higher in comparison to Noord-West which is likely the result of a denser urban environment.</div>
+          </div>
         </div>
         <span class="sq-chevron">▾</span>
       </div>
@@ -601,7 +659,9 @@
         <div class="sq-text-wrap">
           <div class="sq-preview">How do residents of Oud-Oost and Noord-West Amsterdam perceive changes in air quality and...</div>
           <div class="sq-full">How do residents of Oud-Oost and Noord-West Amsterdam perceive changes in air quality and traffic safety since the introduction of the 30 km/h policy, and do these perceptions differ between the two areas?</div>
-          <div class="sq-desc-block">The citizens of Amsterdam had some mixed opinions regarding the introduction of the 30 km/h policy in terms of traffic safety and air quality. Most of the positives respondents highlighted better traffic safety because of people driving more slowly and having a calmer driving behaviour, adding to a more pleasant experience on the street with people feeling safer. However the negative responses were concerned about the increased traffic due to slow driving vehicles as a result of the 30 km/h zones. More traffic congestion, traffic jams and more frustration among drivers were the main reasons of why those respondents felt negative about the new policy. In general people were also in doubt if the new policy actually improves air quality with only 47% saying the speed reduction results in a better air quality.</div>
+          <div class="sq-anim-container">
+            <div class="sq-desc-block">The citizens of Amsterdam had some mixed opinions regarding the introduction of the 30 km/h policy in terms of traffic safety and air quality. Most of the positives respondents highlighted better traffic safety because of people driving more slowly and having a calmer driving behaviour, adding to a more pleasant experience on the street with people feeling safer. However the negative responses were concerned about the increased traffic due to slow driving vehicles as a result of the 30 km/h zones. More traffic congestion, traffic jams and more frustration among drivers were the main reasons of why those respondents felt negative about the new policy. In general people were also in doubt if the new policy actually improves air quality with only 47% saying the speed reduction results in a better air quality.</div>
+          </div>
         </div>
         <span class="sq-chevron">▾</span>
       </div>
@@ -612,7 +672,9 @@
         <div class="sq-text-wrap">
           <div class="sq-preview">To what extent do the sensor measurements from Samenmeten align with the perceptions and...</div>
           <div class="sq-full">To what extent do the sensor measurements from Samenmeten align with the perceptions and experiences reported by residents through the Maptionnaire survey?</div>
-          <div class="sq-desc-block">The alignment between the Samenmeten measurements and perceptions of citizens was not exactly the same. Sensor measurements showed only some changes in air quality with PM10 values and NO2 which almost were unchanged. On the other hand the perceptions of citizens seemed to be more about the traffic safety and driver behaviour rather than improvements in air quality. This suggests that improvements in air quality or the opposite were difficult to perceive with the societal effects of the policy being more important to citizens. Perceptions of a bitter living environment would be more driven changes in traffic rather than objective measurements in air quality. Aside from that it was almost a 50/50 situation on the question if speed reduction increases air quality so the sensor measurements and perceptions of citizens could be aligned.</div>
+          <div class="sq-anim-container">
+            <div class="sq-desc-block">The alignment between the Samenmeten measurements and perceptions of citizens was not exactly the same. Sensor measurements showed only some changes in air quality with PM10 values and NO2 which almost were unchanged. On the other hand the perceptions of citizens seemed to be more about the traffic safety and driver behaviour rather than improvements in air quality. This suggests that improvements in air quality or the opposite were difficult to perceive with the societal effects of the policy being more important to citizens. Perceptions of a better living environment would be more driven changes in traffic rather than objective measurements in air quality. Aside from that it was almost a 50/50 situation on the question if speed reduction increases air quality so the sensor measurements and perceptions of citizens could be aligned.</div>
+          </div>
         </div>
         <span class="sq-chevron">▾</span>
       </div>
@@ -623,7 +685,9 @@
         <div class="sq-text-wrap">
           <div class="sq-preview">How can the results of this comparison be clearly and accessibly visualised for RIVM and their...</div>
           <div class="sq-full">How can the results of this comparison be clearly and accessibly visualised for RIVM and their connections?</div>
-          <div class="sq-desc-block">The result of the project is communicated through making a visual good Experience Builder which includes maps with comparisons between 2023 and 2024 but also pages that include comparisons between the two research areas based on the different speed limits and the what the effects are. Besides that are also line graphs included showing important data to give more context to the situation. A dashboard is also included showing the sensor measurements within Amsterdam.</div>
+          <div class="sq-anim-container">
+            <div class="sq-desc-block">The result of the project is communicated through making a visual good Experience Builder which includes maps with comparisons between 2023 and 2024 but also pages that include comparisons between the two research areas based on the different speed limits and the what the effects are. Besides that are also line graphs included showing important data to give more context to the situation. A dashboard is also included showing the sensor measurements within Amsterdam.</div>
+          </div>
         </div>
         <span class="sq-chevron">▾</span>
       </div>
